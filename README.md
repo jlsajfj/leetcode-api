@@ -1,2 +1,2 @@
-# leetcode-schema
-Schema for Leetcode's GraphQL API
+# leetcode-api
+Wrapper for Leetcode's GraphQL API
