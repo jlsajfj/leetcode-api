@@ -21,12 +21,6 @@ def get_profile(username):
   query_profile = """
   query userPublicProfile($username: String!) {
     matchedUser(username: $username) {
-      contestBadge {
-        name
-        expired
-        hoverText
-        icon
-      }
       username
       githubUrl
       twitterUrl
@@ -54,7 +48,10 @@ def get_profile(username):
     }
   }"""
   
-  return get_leetcode(query_profile, username)
+  raw_data = get_leetcode(query_profile, username)
+  user_data = raw_data['matchedUser']
+  
+  return user_data
 
 def get_problems(username = None):
   query_problems = """
