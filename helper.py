@@ -76,6 +76,10 @@ def get_problems(username = None):
   
   return get_leetcode(query_problems, username)
 
+def get_all_problems():
+  return get_problems('abc')['allQuestionsCount']
+
 if __name__ == '__main__':
   print(get_profile('josephma293'))
   print(get_problems('josephma293'))
+  print(get_all_problems())
