@@ -1,0 +1,52 @@
+openapi: 3.0.0
+info:
+  description: "API endpoint to make using Leetcode's API a bit easier."
+  version: 1.0.0
+  title: Leetcode API
+tags:
+  - name: meta
+    description: Endpoints about the API
+paths:
+  /user:
+    post:
+      description: Fetchs all data for a user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+              properties:
+                username:
+                  type: string
+                  example: leetcode
+      responses:
+        "200":
+          description: All data for a user
+          content:
+            application/json: {}
+  /health-check:
+    get:
+      tags:
+        - meta
+      description: ""
+      responses:
+        "200":
+          description: Health check for API
+          content:
+            text/plain:
+              schema:
+                type: string
+                enum:
+                  - alive
+  /usage:
+    post:
+      tags:
+        - meta
+      description: "API usage instructions"
+      responses:
+        "200":
+          description: API usage instructions
+          content:
+            application/yaml: {}
