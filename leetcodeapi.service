@@ -1,0 +1,15 @@
+[Unit]
+Description=Leetcode API service
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+WorkingDirectory=/home/ubuntu/leetcode-api/
+Type=simple
+Restart=always
+RestartSec=1
+User=ubuntu
+ExecStart= /home/ubuntu/envs/flask02/bin/python /home/ubuntu/leetcode-api/server.py
+
+[Install]
+WantedBy=multi-user.target
