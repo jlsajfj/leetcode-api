@@ -13,6 +13,10 @@ def health_check():
 @app.route('/usage', methods=['POST'])
 def post_usage():
   return flask.send_file('api.yaml')
+  
+@app.route('/usage', methods=['GET'])
+def swagger_usage():
+  return flask.render_template('index.html')
 
 @app.route('/api.yaml')
 def return_api_yaml():
