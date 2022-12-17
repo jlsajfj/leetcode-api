@@ -1,6 +1,6 @@
 import flask, os
 from flask_cors import CORS
-from helper import *
+from helper import get_all_user, get_all_problems
 
 
 app = flask.Flask(__name__)
@@ -22,22 +22,19 @@ def post_user():
     return 'username missing in request', 400
   
   user = f_body['username']
-  result = get_profile(user)
-  problems = get_problems(user)['matchedUser']
-  profile = result['profile']
-  result |= profile
   
-  del result['profile']
+  return get_all_user(user), 200
+
+@app.route('/user', methods=['GET'])
+def get_user():
+  f_args = flask.request.args
   
-  print(problems)
+  if 'username' not in f_args:
+    return 'username missing in request', 400
   
-  for beats in problems['problemsSolvedBeatsStats']:
-    result[beats['difficulty'].lower() + 'Beats'] = beats['percentage']
-    
-  for solved in problems['submitStatsGlobal']['acSubmissionNum']:
-    result[solved['difficulty'].lower() + 'Solved'] = solved['count']
+  user = f_args['username']
   
-  return result, 200
+  return get_all_user(user), 200
 
 if __name__ == '__main__':
   port = int(os.environ.get('PORT', 5050))

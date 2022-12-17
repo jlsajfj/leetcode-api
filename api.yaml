@@ -12,7 +12,7 @@ tags:
 paths:
   /user:
     post:
-      description: Fetchs all data for a user
+      description: Fetchs all data for given user
       requestBody:
         content:
           application/json:
@@ -27,6 +27,21 @@ paths:
       responses:
         "200":
           description: All data for a user
+          content:
+            application/json: {}
+    get:
+      description: Fetchs all data for given user
+      parameters:
+        - in: query
+          name: username
+          schema:
+            type: string
+            example: leetcode
+          required: true
+          description: Username to fetch
+      responses:
+        "200":
+          description: All data for a user 
           content:
             application/json: {}
   /health-check:
