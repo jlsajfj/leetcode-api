@@ -3,6 +3,9 @@ info:
   description: "API endpoint to make using Leetcode's API a bit easier."
   version: 1.0.0
   title: Leetcode API
+servers:
+  - url: http://140.238.151.56/leetcode/
+    description: OCI instance
 tags:
   - name: meta
     description: Endpoints about the API
