@@ -79,7 +79,21 @@ def get_problems(username = None):
 def get_all_problems():
   return get_problems('abc')['allQuestionsCount']
 
+def get_all_user(user):
+  result = get_profile(user)
+  problems = get_problems(user)['matchedUser']
+  profile = result['profile']
+  result |= profile
+  
+  del result['profile']
+  
+  for beats in problems['problemsSolvedBeatsStats']:
+    result[beats['difficulty'].lower() + 'Beats'] = beats['percentage']
+    
+  for solved in problems['submitStatsGlobal']['acSubmissionNum']:
+    result[solved['difficulty'].lower() + 'Solved'] = solved['count']
+  
+  return result
+
 if __name__ == '__main__':
-  print(get_profile('josephma293'))
-  print(get_problems('josephma293'))
-  print(get_all_problems())
+  print(get_all_user('josephma293'))
