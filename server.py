@@ -14,6 +14,10 @@ def health_check():
 def post_usage():
   return flask.send_file('api.yaml')
 
+@app.route('/api.yaml')
+def return_api_yaml():
+  return flask.send_file('api.yaml')
+
 @app.route('/user', methods=['POST'])
 def post_user():
   f_body = flask.request.json
